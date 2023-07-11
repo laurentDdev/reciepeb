@@ -76,6 +76,20 @@ const authController = {
             console.log(e);
             res.status(401).json({message: 'Erreur ' + e.message})
         }
+    },
+    autologin: async(req, res) => {
+        try {
+            const token = req.headers['authorization'] && req.headers['authorization'].split(" ")[1]
+            const user = await authService.autologin(token)
+            if (user) {
+                console.log("---------------------")
+                console.log(user);
+                res.status(200).json({user: user})
+            }
+        }catch(e) {
+            console.log(e);
+            res.status(401).json({message: 'invalide token'})
+        }
     }
 }
 

@@ -7,6 +7,7 @@ const authRoute = require('express').Router()
 
 authRoute.post('/register', bodyMiddleware(registerValidator), authController.register)
 authRoute.post('/login', bodyMiddleware(loginValidator), authController.login)
+authRoute.post('/autologin', authController.autologin)
 
 
 module.exports = authRoute
